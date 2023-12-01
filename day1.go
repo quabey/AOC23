@@ -12,13 +12,15 @@ var nums []rune
 var sum int = 0
 
 func main() {
-    scanner := bufio.NewScanner(os.Stdin)
+    file, _ := os.Open("day1input.txt")
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
 		sum += calcWord(line)
-		fmt.Println(calcWord(line), sum)
 		nums = nil
 	}
+	fmt.Println(sum)
 }
 
 func calcWord(word string) (calc int) {
